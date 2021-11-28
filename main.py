@@ -19,7 +19,9 @@ def handler(path, is_new, is_convert, xlog):
             history_file = os.path.join(path, "list.json")
             history_dict = read_json_file(history_file, {"dir": [], "txt": []})
         res_dict = {"dir": [], "txt": []}
-        for each_name in os.listdir(path):
+        all_list = os.listdir(path)
+        all_list = sorted(all_list, key=lambda x: x.encode("GBK"))
+        for each_name in all_list:
             each_full_name = os.path.join(path, each_name)
             if os.path.isdir(each_full_name):
                 # 目录
